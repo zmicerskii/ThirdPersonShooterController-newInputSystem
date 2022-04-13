@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f893f369065d8e54db57fefe91e0dc62, type: 3}
+  m_Name: GameMusic
+  m_EditorClassIdentifier: 
+  audioField:
+  - audioType: 0
+    audioClip: {fileID: 8300000, guid: 331378fbd50d9de448ae44d9e0d4d195, type: 3}
+  - audioType: 1
+    audioClip: {fileID: 8300000, guid: 037dfaa71ef0e00459ae9d7da5469316, type: 3}
+  - audioType: 2
+    audioClip: {fileID: 8300000, guid: 0f227354481f03f40b6c8985f43c13fb, type: 3}
+  - audioType: 3
+    audioClip: {fileID: 8300000, guid: 29bdd61efa123ce4b8bb1422f1c23463, type: 3}
