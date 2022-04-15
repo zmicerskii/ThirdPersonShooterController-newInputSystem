@@ -1,4 +1,5 @@
 using System;
+using SimpleEventBus.Disposables;
 using UnityEngine;
 
 
@@ -11,29 +12,34 @@ public class PersonHealthController : MonoBehaviour
     [SerializeField, Min(1)] 
     private int _health;
 
+    private CompositeDisposable _subscriptions;
+    
     private void Awake()
     {
         HealthStartInitialize?.Invoke(_health);
 
-        InputDamage.TakeDamage += TakeDamageHandler;
+        _subscriptions = new CompositeDisposable
+        {
+            EventStreams.Game.Subscribe<TakeDamageEvent>(TakeDamageHandler)
+        };
     }
 
-    private void TakeDamageHandler(int damage)
+    private void TakeDamageHandler(TakeDamageEvent eventData)
     {
-        if (damage >= _health)
+        if (eventData.Damage >= _health)
         {
             HealthChange?.Invoke(0);
             Died?.Invoke();
         }
         else
         {
-            _health -= damage;
+            _health -= eventData.Damage;
             HealthChange?.Invoke(_health);
         }
     }
 
     private void OnDestroy()
     {
-        InputDamage.TakeDamage -= TakeDamageHandler;
+        _subscriptions?.Dispose();
     }
 }

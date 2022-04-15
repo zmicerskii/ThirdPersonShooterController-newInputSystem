@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
+using Events;
 using UnityEngine;
 using UnityEngine.UI;
 using StarterAssets;
 
 public class PersonDiedState : MonoBehaviour
 {
-    public static event Action PersonDied;
-
     [SerializeField] 
     private Image _diedPanel;
     [SerializeField] 
@@ -32,7 +31,7 @@ public class PersonDiedState : MonoBehaviour
     private IEnumerator TimeToRespawn ()
     {
         yield return new WaitForSeconds(_timeToRespawn);
-        PersonDied?.Invoke();
+        EventStreams.Game.Publish(new PersonDiedEvent());
     }
     private void OnDestroy()
     {

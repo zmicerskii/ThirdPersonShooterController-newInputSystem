@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class InputDamage : MonoBehaviour
 {
-    public static event Action<int> TakeDamage;
-
     [SerializeField, Range (1,100), Tooltip("1~100%")] 
     private float _percentBlockDamage;
 
@@ -20,6 +18,6 @@ public class InputDamage : MonoBehaviour
     private void Damage(float bulletDamage)
     {
         var damage = (int)Math.Round(bulletDamage * _percentBlockDamage / convertPercents);
-        TakeDamage?.Invoke(damage);
+        EventStreams.Game.Publish(new TakeDamageEvent(damage));
     }
 }
